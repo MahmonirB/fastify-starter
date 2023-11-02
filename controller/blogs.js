@@ -56,7 +56,7 @@ const deleteBlog = async (req, reply) => {
     const id = Number(req.params.id)
 
     blogs = blogs.filter(blog => blog.id !== id)
-    return { msg: `Blog with ID ${id} is deleted` }
+    return { message: `Blog with ID ${id} is deleted` }
 }
 
 module.exports = {

@@ -4,40 +4,37 @@ const app = require("fastify")({
 
 const cors = require("@fastify/cors");
 app.register(cors, {
-  hook: "preHandler",
-  delegator: (req, callback) => {
-    const corsOptions = {
-      // This is NOT recommended for production as it enables reflection exploits
-      origin: true,
-    };
-
-    // do not include CORS headers for requests from localhost
-    if (/^localhost$/m.test(req.headers.origin)) {
-      corsOptions.origin = false;
+  origin: (origin, cb) => {
+    const hostname = new URL(origin).hostname;
+    if (hostname === "localhost") {
+      //  Request from localhost will pass
+      cb(null, true);
+      return;
     }
-
-    // callback expects two parameters: error and options
-    callback(null, corsOptions);
+    // Generate an error on other origins, disabling access
+    cb(new Error("Not allowed"), false);
   },
+  methods: ["GET", "PUT", "POST", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 });
 
-const fastifyEnv = require('@fastify/env');
+const fastifyEnv = require("@fastify/env");
 const schema = {
-    type: 'object',
-    required: [ 'PORT' ],
-    properties: {
-      PORT: {
-        type: 'string',
-        default: 3000
-      }
-    }
-  }
-  
-  const options = {
-    confKey: 'config', // optional, default: 'config'
-    schema: schema,
-    dotenv: true,
-  }  
+  type: "object",
+  required: ["PORT"],
+  properties: {
+    PORT: {
+      type: "string",
+      default: 3000,
+    },
+  },
+};
+
+const options = {
+  confKey: "config", // optional, default: 'config'
+  schema: schema,
+  dotenv: true,
+};
 
 app.register(fastifyEnv, options).ready((err) => {
   if (err) console.error(err);
@@ -46,12 +43,17 @@ app.register(fastifyEnv, options).ready((err) => {
   // output: { PORT: 1000 }
 });
 
-app.get('/', (req, res) => {
-  res.send({ messgae: 'Hello World' });
+// hooks
+app.addHook("onRoute", (routeOptions) => {
+  console.log(`Registered route: ${routeOptions.url}`);
+});
+
+app.get("/", (req, res) => {
+  res.send({ messgae: "Hello World" });
 });
 
 // Register routes to handle blog posts
-const blogRoutes = require('./routes/blogs');
+const blogRoutes = require("./routes/blogs");
 blogRoutes.forEach((route, index) => {
   app.route(route);
 });

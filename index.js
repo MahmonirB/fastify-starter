@@ -33,7 +33,10 @@ const schema = {
 const options = {
   confKey: "config", // optional, default: 'config'
   schema: schema,
-  dotenv: true,
+  dotenv: {
+    path: `.env.${process.env.NODE_ENV}`,
+    debug: true
+  }
 };
 
 app.register(fastifyEnv, options).ready((err) => {

@@ -1,8 +1,11 @@
+const cors = require("@fastify/cors");
+const fastifySwagger = require("@fastify/swagger");
+const fastifySwaggerUi = require("@fastify/swagger-ui");
 const app = require("fastify")({
   logger: true,
 });
+const swaggerConfig = require("./src/config/swagger.config.ts");
 
-const cors = require("@fastify/cors");
 app.register(cors, {
   origin: (origin, cb) => {
     const hostname = new URL(origin).hostname;
@@ -30,13 +33,18 @@ const schema = {
   },
 };
 
+app.register(fastifySwagger, swaggerConfig);
+app.register(fastifySwaggerUi, {
+  routePrefix: "/docs",
+});
+
 const options = {
   confKey: "config", // optional, default: 'config'
   schema: schema,
   dotenv: {
     path: `.env.${process.env.NODE_ENV}`,
-    debug: true
-  }
+    debug: true,
+  },
 };
 
 app.register(fastifyEnv, options).ready((err) => {

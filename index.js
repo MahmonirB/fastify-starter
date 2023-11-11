@@ -1,58 +1,19 @@
 const cors = require("@fastify/cors");
+const fastifyEnv = require("@fastify/env");
 const fastifySwagger = require("@fastify/swagger");
 const fastifySwaggerUi = require("@fastify/swagger-ui");
 const app = require("fastify")({
   logger: true,
 });
-const swaggerConfig = require("./src/config/swagger.config.ts");
+const { swaggerConfig, swaggerUiConfig } = require("./src/config/swagger.config.ts");
+const envOptions = require("./src/config/env.config.ts");
+const corsConfigs = require("./src/config/cors.config.ts");
 
-app.register(cors, {
-  origin: (origin, cb) => {
-    const hostname = new URL(origin).hostname;
-    if (hostname === "localhost") {
-      //  Request from localhost will pass
-      cb(null, true);
-      return;
-    }
-    // Generate an error on other origins, disabling access
-    cb(new Error("Not allowed"), false);
-  },
-  methods: ["GET", "PUT", "POST", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-});
-
-const fastifyEnv = require("@fastify/env");
-const schema = {
-  type: "object",
-  required: ["PORT"],
-  properties: {
-    PORT: {
-      type: "string",
-      default: 3000,
-    },
-  },
-};
-
+app.register(cors, corsConfigs);
 app.register(fastifySwagger, swaggerConfig);
-app.register(fastifySwaggerUi, {
-  routePrefix: "/docs",
-});
+app.register(fastifySwaggerUi, swaggerUiConfig);
 
-const options = {
-  confKey: "config", // optional, default: 'config'
-  schema: schema,
-  dotenv: {
-    path: `.env.${process.env.NODE_ENV}`,
-    debug: true,
-  },
-};
-
-app.register(fastifyEnv, options).ready((err) => {
-  if (err) console.error(err);
-
-  console.log(app.config);
-  // output: { PORT: 1000 }
-});
+app.register(fastifyEnv, envOptions);
 
 // hooks
 app.addHook("onRoute", (routeOptions) => {

@@ -1,5 +1,5 @@
 const corsOptions = {
-  origin: (origin: any, cb: any) => {
+  origin: (origin, cb) => {
     const hostname = new URL(origin).hostname;
     if (hostname === "localhost") {
       //  Request from localhost will pass

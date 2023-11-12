@@ -18,4 +18,4 @@ const envOptions = {
   },
 };
 
-module.exports = envOptions;
+export default envOptions;

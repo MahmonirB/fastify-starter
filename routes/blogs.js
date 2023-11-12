@@ -1,4 +1,4 @@
-const blogController = require('../controller/blogs');
+import blogController from '../controller/blogs';
 
 const getBlogValidation = {
     params: {
@@ -100,4 +100,4 @@ const routes = [{
         handler: blogController.deleteBlog
     }
 ]
-module.exports = routes
+export default routes;

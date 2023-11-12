@@ -1,4 +1,10 @@
-import blogController from '../controller/blogs';
+import {
+    getAllBlogs,
+    getBlog,
+    addBlog,
+    updateBlog,
+    deleteBlog
+} from '../controller/blogs';
 
 const getBlogValidation = {
     params: {
@@ -73,31 +79,31 @@ const deleteBlogValidation = {
 const routes = [{
         method: 'GET',
         url: '/api/blogs',
-        handler: blogController.getAllBlogs
+        handler: getAllBlogs
     },
     {
         method: 'GET',
         url: '/api/blogs/:id',
         schema: getBlogValidation,
-        handler: blogController.getBlog
+        handler: getBlog
     },
     {
         method: 'POST',
         url: '/api/blogs',
         schema: addBlogValidation,
-        handler: blogController.addBlog
+        handler: addBlog
     },
     {
         method: 'PUT',
         url: '/api/blogs/:id',
         schema: updateBlogValidation,
-        handler: blogController.updateBlog
+        handler: updateBlog
     },
     {
         method: 'DELETE',
         url: '/api/blogs/:id',
         schema: deleteBlogValidation,
-        handler: blogController.deleteBlog
+        handler: deleteBlog
     }
 ]
 export default routes;

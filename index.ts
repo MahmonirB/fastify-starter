@@ -6,7 +6,7 @@ import loggerConfig from "./src/config/logger.config";
 import { swaggerConfig, swaggerUiConfig } from "./src/config/swagger.config.ts";
 import envOptions from "./src/config/env.config.ts";
 import corsConfigs from "./src/config/cors.config.ts";
-import blogRoutes from "./routes/blogs.js";
+import blogRoutes from "./routes/blogs.ts";
 import { RouteOptions } from "fastify";
 
 const app = require("fastify")({

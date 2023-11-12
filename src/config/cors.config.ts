@@ -1,5 +1,5 @@
 const corsOptions = {
-  origin: (origin, cb) => {
+  origin: (origin: any, cb: any) => {
     const hostname = new URL(origin).hostname;
     if (hostname === "localhost") {
       //  Request from localhost will pass
@@ -13,4 +13,4 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-module.exports = corsOptions;
+export default corsOptions;

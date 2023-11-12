@@ -3,7 +3,9 @@
     "compilerOptions": {
     "outDir": "dist",
     "declaration": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     },
     "include": ["./src/**/*.ts"],
 }

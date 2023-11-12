@@ -19,4 +19,4 @@ const swaggerUiConfig = {
   routePrefix: "/docs",
 };
 
-module.exports = { swaggerConfig, swaggerUiConfig };
+export { swaggerConfig, swaggerUiConfig };

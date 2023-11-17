@@ -1,71 +1,71 @@
-type BlogItem = Array<{ id: number, title: string }>;
+import { FastifyRequest } from 'fastify';
+
+type BlogItem = Array<{ id: number; title: string }>;
+type Request = FastifyRequest<{
+  Params: { id: string };
+  Body: { title: string };
+}>;
 
 let blogs: BlogItem | undefined = [
-    {
-        id: 1,
-        title: 'This is an experiment'
-    },
-    {
-        id: 2,
-        title: 'Fastify is pretty cool'
-    },
-    {
-        id: 3,
-        title: 'Just another blog, yea!'
-    }
-]
+  {
+    id: 1,
+    title: 'This is an experiment',
+  },
+  {
+    id: 2,
+    title: 'Fastify is pretty cool',
+  },
+  {
+    id: 3,
+    title: 'Just another blog, yea!',
+  },
+];
 
 // Handlers
 const getAllBlogs = async () => {
-    return blogs
-}
+  return blogs;
+};
 
-const getBlog = async (req: any) => {
-    const id = Number(req.params.id) // blog ID
-    const blog = blogs?.find(blog => blog.id === id)
-    return blog
-}
+const getBlog = async (req: Request) => {
+  const id = Number(req.params.id); // blog ID
+  const blog = blogs?.find((blog) => blog.id === id);
+  return blog;
+};
 
-const addBlog = async (req: any) => {
-    const blogLen = blogs?.length || 0;
-    const id = blogLen + 1 // generate new ID
-    const newBlog = {
+const addBlog = async (req: Request) => {
+  const blogLen = blogs?.length || 0;
+  const id = blogLen + 1; // generate new ID
+  const newBlog = {
+    id,
+    title: req.body.title,
+  };
+
+  blogs?.push(newBlog);
+  return newBlog;
+};
+
+const updateBlog = async (req: Request) => {
+  const id = Number(req.params.id);
+  blogs = blogs?.map((blog) => {
+    if (blog.id === id) {
+      return {
         id,
-        title: req.body.title
+        title: req.body.title,
+      };
     }
+  }) as BlogItem;
 
-    blogs?.push(newBlog)
-    return newBlog
-}
+  return {
+    id,
+    title: req.body.title,
+  };
+};
 
-const updateBlog = async (req: any) => {
-    const id = Number(req.params.id)
-    blogs = blogs?.map(blog => {
-        if (blog.id === id) {
-            return {
-                id,
-                title: req.body.title
-            }
-        }
-    }) as BlogItem;
+const deleteBlog = async (req: Request) => {
+  const id = Number(req.params.id);
 
-    return {
-        id,
-        title: req.body.title
-    }
-}
+  blogs = blogs?.filter((blog) => blog.id !== id);
+  return { message: `Blog with ID ${id} is deleted` };
+};
 
-const deleteBlog = async (req: any) => {
-    const id = Number(req.params.id)
-
-    blogs = blogs?.filter(blog => blog.id !== id)
-    return { message: `Blog with ID ${id} is deleted` }
-}
-
-export {
-    getAllBlogs,
-    getBlog,
-    addBlog,
-    updateBlog,
-    deleteBlog
-}
+export { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog };

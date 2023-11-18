@@ -1,6 +1,7 @@
 import { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog } from '../controller/blogs';
+import { getSchema } from '../schema/blog.schema';
 
-const getBlogValidation = {
+export const getBlogValidation = {
   params: {
     id: { type: 'string' },
   },
@@ -77,7 +78,7 @@ const routes = [
   {
     method: 'GET',
     url: '/api/blogs/:id',
-    schema: getBlogValidation,
+    schema: getSchema,
     handler: getBlog,
   },
   {

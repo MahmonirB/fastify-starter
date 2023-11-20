@@ -1,5 +1,6 @@
+import { FastifyInstance } from 'fastify';
 import { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog } from '../controller/blogs';
-import { getSchema } from '../schema/blog.schema';
+import { getBlogSchema } from '../schema/blog.schema';
 
 export const getBlogValidation = {
   params: {
@@ -69,36 +70,22 @@ const deleteBlogValidation = {
     },
   },
 };
-const routes = [
-  {
-    method: 'GET',
-    url: '/api/blogs',
-    handler: getAllBlogs,
-  },
-  {
-    method: 'GET',
-    url: '/api/blogs/:id',
-    schema: getSchema,
-    handler: getBlog,
-  },
-  {
-    method: 'POST',
-    url: '/api/blogs',
-    schema: addBlogValidation,
-    handler: addBlog,
-  },
-  {
-    method: 'PUT',
-    url: '/api/blogs/:id',
-    schema: updateBlogValidation,
-    handler: updateBlog,
-  },
-  {
-    method: 'DELETE',
-    url: '/api/blogs/:id',
-    schema: deleteBlogValidation,
-    handler: deleteBlog,
-  },
-];
+
+async function routes(fastify: FastifyInstance) {
+  // List all blogs, paginated
+  fastify.get('/', getAllBlogs);
+
+  // Get one blog
+  fastify.get('/:id', { schema: getBlogSchema }, getBlog);
+
+  // Deleteing a blog
+  fastify.delete('/:id', { schema: deleteBlogValidation }, deleteBlog);
+
+  // Create a new blog
+  fastify.post('/', { schema: addBlogValidation }, addBlog);
+
+  // Update an existing Category
+  fastify.put('/:id', { schema: updateBlogValidation }, updateBlog);
+}
 
 export default routes;

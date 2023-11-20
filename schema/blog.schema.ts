@@ -1,10 +1,10 @@
 // GET '/:id'
-export const getSchema = {
+export const getBlogSchema = {
+  $id: 'getBlogSchema',
   params: { $ref: 'paramIdSchema#' },
-  tags: ['blog'],
-  description: 'This is a description.',
+  tags: ['blogs'],
   response: {
-    200: { $ref: 'blogSchema#' },
-    404: { $ref: 'messageSchema#' },
+    // 200: { $ref: 'blogSchema#' },
+    // 404: { $ref: 'messageSchema#' },
   },
 };

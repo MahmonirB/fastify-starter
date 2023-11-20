@@ -9,7 +9,7 @@ import { swaggerConfig, swaggerUiConfig } from './src/config/swagger.config.ts';
 import envOptions from './src/config/env.config.ts';
 import corsConfigs from './src/config/cors.config.ts';
 import blogRoutes from './routes/blogs.ts';
-import { getSchema } from './schema/blog.schema.ts';
+import { getBlogSchema } from './schema/blog.schema.ts';
 import { messageSchema, paramIdSchema } from './schema/common.schema.ts';
 
 const app = fastify({
@@ -23,7 +23,7 @@ app.register(fastifyEnv, envOptions);
 
 app.addSchema(paramIdSchema);
 app.addSchema(messageSchema);
-app.addSchema(getSchema);
+app.addSchema(getBlogSchema);
 
 // hooks
 app.addHook('onRoute', (routeOptions: RouteOptions) => {
@@ -34,8 +34,9 @@ app.get('/', (_req, res) => {
   res.send({ messgae: 'Hello World' });
 });
 
-// Register routes to handle blog posts
-blogRoutes.forEach((route: any) => app.route(route));
+app.register(async (api) => {
+  api.register(blogRoutes, { prefix: '/api/blogs' });
+});
 
 app.listen({ port: 3000 }, (err: Error | null, address: string) => {
   if (err) {

@@ -33,7 +33,8 @@ const getBlog = async (req: Request) => {
 };
 
 const addBlog = async (req: Request) => {
-  const blogLen = blogs?.length || 0;
+  const blogIDs = blogs?.map((item) => item.id);
+  const blogLen = blogIDs?.length ? Math.max(...blogIDs) : 0;
   const id = blogLen + 1; // generate new ID
   const newBlog = {
     id,

@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog } from '../controller/blogs';
-import { getBlogSchema } from '../schema/blog.schema';
+import { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog } from '@/controller/blogs';
+import { getBlogSchema } from '@/schema/blog.schema';
 
 export const getBlogValidation = {
   params: {

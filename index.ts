@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import 'module-alias/register';
 import fastify, { RouteOptions } from 'fastify';
 import cors from '@fastify/cors';
 import fastifyEnv from '@fastify/env';
@@ -7,7 +8,7 @@ import fastifySwaggerUi from '@fastify/swagger-ui';
 import loggerConfig from './src/config/logger.config';
 import { swaggerConfig, swaggerUiConfig } from './src/config/swagger.config.ts';
 import envOptions from './src/config/env.config.ts';
-import corsConfigs from './src/config/cors.config.ts';
+import corsConfigs from '@/src/config/cors.config.ts';
 import blogRoutes from './routes/blogs.ts';
 import { getBlogSchema } from './schema/blog.schema.ts';
 import { messageSchema, paramIdSchema } from './schema/common.schema.ts';

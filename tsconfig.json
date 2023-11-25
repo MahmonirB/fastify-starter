@@ -6,6 +6,12 @@
     "sourceMap": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
     },
     "include": ["./src/**/*.ts"],
 }

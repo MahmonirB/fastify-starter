@@ -10,7 +10,13 @@ import { swaggerConfig, swaggerUiConfig } from '@/src/config/swagger.config.ts';
 import envOptions from '@/src/config/env.config.ts';
 import corsConfigs from '@/src/config/cors.config.ts';
 import blogRoutes from '@/routes/blogs.ts';
-import { getBlogSchema } from '@/schema/blog.schema.ts';
+import {
+  deleteBlogSchema,
+  getAllBlogSchema,
+  getBlogSchema,
+  postBlogSchema,
+  updateBlogSchema,
+} from '@/schema/blog.schema.ts';
 import { blogSchema } from '@/schema/models.schema';
 import { messageSchema, paramIdSchema } from '@/schema/common.schema.ts';
 
@@ -26,7 +32,12 @@ app.register(fastifyEnv, envOptions);
 app.addSchema(paramIdSchema);
 app.addSchema(messageSchema);
 app.addSchema(blogSchema);
+
 app.addSchema(getBlogSchema);
+app.addSchema(getAllBlogSchema);
+app.addSchema(updateBlogSchema);
+app.addSchema(postBlogSchema);
+app.addSchema(deleteBlogSchema);
 
 // hooks
 app.addHook('onRoute', (routeOptions: RouteOptions) => {

@@ -1,10 +1,4 @@
-import { FastifyRequest } from 'fastify';
-
-type BlogItem = Array<{ id: number; title: string }>;
-type Request = FastifyRequest<{
-  Params: { id: string };
-  Body: { title: string };
-}>;
+import { BlogItem, Request } from '@/types/blog';
 
 let blogs: BlogItem | undefined = [
   {

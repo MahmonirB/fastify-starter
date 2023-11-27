@@ -5,6 +5,7 @@ import cors from '@fastify/cors';
 import fastifyEnv from '@fastify/env';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
+import fastifySensible from '@fastify/sensible';
 import loggerConfig from '@/src/config/logger.config';
 import { swaggerConfig, swaggerUiConfig } from '@/src/config/swagger.config.ts';
 import envOptions from '@/src/config/env.config.ts';
@@ -28,6 +29,7 @@ app.register(cors, corsConfigs);
 app.register(fastifySwagger, swaggerConfig);
 app.register(fastifySwaggerUi, swaggerUiConfig);
 app.register(fastifyEnv, envOptions);
+app.register(fastifySensible);
 
 app.addSchema(paramIdSchema);
 app.addSchema(messageSchema);

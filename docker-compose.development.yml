@@ -4,7 +4,7 @@ services:
   web:
     build:
       target: development
-    command: npm run docker:dev
+    command: npm run docker:development
     ports:
       - "${BIND_PORT}:${BIND_PORT}"
       # Required to access prsma studio

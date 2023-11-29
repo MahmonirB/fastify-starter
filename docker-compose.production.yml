@@ -4,5 +4,5 @@ services:
   web:
     build:
       target: production
-    command: npm run docker:prod
+    command: npm run docker:production
 

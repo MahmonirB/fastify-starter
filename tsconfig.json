@@ -4,8 +4,6 @@
     "outDir": "dist",
     "declaration": false,
     "sourceMap": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
@@ -17,6 +15,6 @@
       ]
     }
     },
-    "include": ["src/**/*.ts", "src/index.ts"],
-    "exclude": ["dist", "node_modules"]
+    "include": ["./src/**/*.ts"],
+    // "exclude": ["dist", "node_modules"]
 }

@@ -6,9 +6,9 @@ import fastifyEnv from '@fastify/env';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import loggerConfig from '@/config/logger.config';
-import { swaggerConfig, swaggerUiConfig } from '@/config/swagger.config.ts';
-import envOptions from '@/config/env.config.ts';
-import corsConfigs from '@/config/cors.config.ts';
+import { swaggerConfig, swaggerUiConfig } from '@/config/swagger.config';
+import envOptions from '@/config/env.config';
+import corsConfigs from '@/config/cors.config';
 import blogRoutes from '@/routes/blogs';
 import {
   deleteBlogSchema,
@@ -52,7 +52,7 @@ app.register(async (api) => {
   api.register(blogRoutes, { prefix: '/api/blogs' });
 });
 
-app.listen({ port: 3000 }, (err: Error | null, address: string) => {
+app.listen(3000, '0.0.0.0', (err: Error | null, address: string) => {
   if (err) {
     app.log.error(err);
     process.exit(1);

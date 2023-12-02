@@ -9,14 +9,14 @@ const cors_1 = __importDefault(require("@fastify/cors"));
 const env_1 = __importDefault(require("@fastify/env"));
 const swagger_1 = __importDefault(require("@fastify/swagger"));
 const swagger_ui_1 = __importDefault(require("@fastify/swagger-ui"));
-const logger_config_1 = __importDefault(require("@/config/logger.config"));
-const swagger_config_1 = require("@/config/swagger.config");
-const env_config_1 = __importDefault(require("@/config/env.config"));
-const cors_config_1 = __importDefault(require("@/config/cors.config"));
-const blogs_1 = __importDefault(require("@/routes/blogs"));
-const blog_schema_1 = require("@/schema/blog.schema");
-const models_schema_1 = require("@/schema/models.schema");
-const common_schema_1 = require("@/schema/common.schema");
+const logger_config_1 = __importDefault(require("./config/logger.config"));
+const swagger_config_1 = require("./config/swagger.config");
+const env_config_1 = __importDefault(require("./config/env.config"));
+const cors_config_1 = __importDefault(require("./config/cors.config"));
+const blogs_1 = __importDefault(require("./routes/blogs"));
+const blog_schema_1 = require("./schema/blog.schema");
+const models_schema_1 = require("./schema/models.schema");
+const common_schema_1 = require("./schema/common.schema");
 const app = (0, fastify_1.default)({
     logger: logger_config_1.default,
 });

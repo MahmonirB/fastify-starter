@@ -1,12 +1,12 @@
 import { FastifyInstance } from 'fastify';
-import { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog } from '@/controller/blogs';
+import { getAllBlogs, getBlog, addBlog, updateBlog, deleteBlog } from '../controller/blogs';
 import {
   deleteBlogSchema,
   getAllBlogSchema,
   getBlogSchema,
   postBlogSchema,
   updateBlogSchema,
-} from '@/schema/blog.schema';
+} from '../schema/blog.schema';
 
 async function routes(fastify: FastifyInstance) {
   // List all blogs, paginated

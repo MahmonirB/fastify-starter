@@ -5,20 +5,20 @@ import cors from '@fastify/cors';
 import fastifyEnv from '@fastify/env';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
-import loggerConfig from '@/config/logger.config';
-import { swaggerConfig, swaggerUiConfig } from '@/config/swagger.config';
-import envOptions from '@/config/env.config';
-import corsConfigs from '@/config/cors.config';
-import blogRoutes from '@/routes/blogs';
+import loggerConfig from './config/logger.config';
+import { swaggerConfig, swaggerUiConfig } from './config/swagger.config';
+import envOptions from './config/env.config';
+import corsConfigs from './config/cors.config';
+import blogRoutes from './routes/blogs';
 import {
   deleteBlogSchema,
   getAllBlogSchema,
   getBlogSchema,
   postBlogSchema,
   updateBlogSchema,
-} from '@/schema/blog.schema';
-import { blogSchema } from '@/schema/models.schema';
-import { messageSchema, paramIdSchema } from '@/schema/common.schema';
+} from './schema/blog.schema';
+import { blogSchema } from './schema/models.schema';
+import { messageSchema, paramIdSchema } from './schema/common.schema';
 
 const app = fastify({
   logger: loggerConfig,

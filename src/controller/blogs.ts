@@ -1,4 +1,4 @@
-import { BlogItem, Request } from '@/types/blog';
+import { BlogItem, Request } from '../types/blog';
 
 let blogs: BlogItem | undefined = [
   {

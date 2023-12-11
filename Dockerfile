@@ -10,22 +10,9 @@ COPY . .
 
 RUN yarn build
 
-# Running app
-FROM node:alpine
+EXPOSE 3000
 
-ENV NODE_ENV development
-USER node
+CMD ["node", "dist/index.js"]
 
-WORKDIR /usr/src/app
-
-COPY package.json tsconfig.json yarn.lock ./
-
-RUN yarn install
-
-COPY --from=builder /usr/src/app/dist ./dist
-
-EXPOSE 8080
-RUN yarn start
-
-# docker build -t fastify-docker .
-# docker run -p 8080:8080 fastify-docker
+# docker build -t fastify-starter-docker .
+# docker run -p 3000:3000 fastify-starter-docker

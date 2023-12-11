@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const corsOptions = {
+var corsOptions = {
     origin: '*'
 };
 exports.default = corsOptions;

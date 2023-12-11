@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const environmentConfigs = {
+var environmentConfigs = {
     development: {
         level: 'debug',
         transport: {
@@ -14,7 +14,7 @@ const environmentConfigs = {
     production: true,
 };
 function getConfig() {
-    const env = process.env.NODE_ENV || 'development';
+    var env = process.env.NODE_ENV || 'development';
     switch (env) {
         case 'development':
             return environmentConfigs.development;

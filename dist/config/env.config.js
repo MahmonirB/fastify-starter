@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const schema = {
+var schema = {
     type: "object",
     required: ["PORT"],
     properties: {
@@ -10,11 +10,11 @@ const schema = {
         },
     },
 };
-const envOptions = {
-    confKey: "config",
+var envOptions = {
+    confKey: "config", // optional, default: 'config'
     schema: schema,
     dotenv: {
-        path: `.env.${process.env.NODE_ENV}`,
+        path: ".env.".concat(process.env.NODE_ENV),
         debug: true,
     },
 };

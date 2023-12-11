@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.swaggerUiConfig = exports.swaggerConfig = void 0;
-const swaggerConfig = {
+var swaggerConfig = {
     swagger: {
         info: {
             title: "RESTful APIs using Fastify",
@@ -18,7 +18,7 @@ const swaggerConfig = {
     },
 };
 exports.swaggerConfig = swaggerConfig;
-const swaggerUiConfig = {
+var swaggerUiConfig = {
     routePrefix: "/docs",
 };
 exports.swaggerUiConfig = swaggerUiConfig;

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteBlogSchema = exports.postBlogSchema = exports.updateBlogSchema = exports.getAllBlogSchema = exports.getBlogSchema = void 0;
+// GET '/:id'
 exports.getBlogSchema = {
     $id: 'getBlogSchema',
     params: { $ref: 'paramIdSchema#' },
@@ -10,6 +11,7 @@ exports.getBlogSchema = {
         404: { $ref: 'messageResponseSchema#' },
     },
 };
+// GET '/'
 exports.getAllBlogSchema = {
     $id: 'getAllBlogSchema',
     tags: ['blogs'],
@@ -18,6 +20,7 @@ exports.getAllBlogSchema = {
         404: { $ref: 'messageResponseSchema#' },
     },
 };
+// UPDATE '/:id'
 exports.updateBlogSchema = {
     $id: 'updateBlogSchema',
     params: { $ref: 'paramIdSchema#' },
@@ -30,6 +33,7 @@ exports.updateBlogSchema = {
         404: { $ref: 'messageResponseSchema#' },
     },
 };
+// POST '/'
 exports.postBlogSchema = {
     $id: 'postBlogSchema',
     body: {
@@ -42,6 +46,7 @@ exports.postBlogSchema = {
         404: { $ref: 'messageResponseSchema#' },
     },
 };
+// DELETE '/:id'
 exports.deleteBlogSchema = {
     $id: 'deleteBlogSchema',
     params: { $ref: 'paramIdSchema#' },

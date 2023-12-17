@@ -25,3 +25,6 @@ In addidtion, I've applied configs for cors, environment variables, logger and s
 ## Running without docker
 
 In this project to run app and watch it, I've used nodemon in NODE_ENV development with `NODE_ENV=development nodemon`, therefore run it with `yarn dev`. In purpose of building app, run `yarn build` that is compiling app with `tsconfig.json`.
+
+## swagger
+ In `[swagger page](http://0.0.0.0:3000/docs/static/index.html)` you can see services, schemas and models of swagger documentation.

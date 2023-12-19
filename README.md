@@ -28,3 +28,12 @@ In this project to run app and watch it, I've used nodemon in NODE_ENV developme
 
 ## swagger
  In `[swagger page](http://0.0.0.0:3000/docs/static/index.html)` you can see services, schemas and models of swagger documentation.
+
+## Fastify env
+Environments variables are configured by using '@fastify/env' in index.ts file via built-in dotenv options:
+```
+dotenv: {
+    path: `.env.${process.env.NODE_ENV}`,
+    debug: true,
+  },
+```
